@@ -1,13 +1,13 @@
 {
   "title": "Halcyon Expanse",
   "beginLabel": "BEGIN",
-  "cover": "art/cover-matched-v2.jpg",
+  "cover": "art/cover-opening-01.jpg",
   "trailer": "video/trailer-v5.mp4",
   "dialogue": "NAME on its own line. (action) smaller. Quoted speech italic.",
   "chapter": {
     "id": "ch1",
     "title": "Arrival",
-    "note": "Re-chunked denser slides (~40–80 words/page). Engagement deferred. Shuttle trio wired."
+    "note": "Re-chunked denser slides (~40\u201380 words/page). Engagement deferred. Shuttle trio wired."
   },
   "pages": [
     {
@@ -20,7 +20,7 @@
       "id": "p02",
       "plate": "art/open-01-plate.jpg",
       "top": "Already late.",
-      "band": "He has been aboard eleven hours. He knows the sound of a relief hull. He does not know this one yet. The Vesper is small on purpose. People live close. Coffee lives longer than it should. Someone has already written his name on a board in a room he has not seen.\n\nEven up here the vents bring a dry chalk smell when the planet wind turns — the kind that lives in old classrooms."
+      "band": "He has been aboard eleven hours. He knows the sound of a relief hull. He does not know this one yet. The Vesper is small on purpose. People live close. Coffee lives longer than it should. Someone has already written his name on a board in a room he has not seen.\n\nEven up here the vents bring a dry chalk smell when the planet wind turns \u2014 the kind that lives in old classrooms."
     },
     {
       "id": "p03",
@@ -38,7 +38,7 @@
       "id": "p05",
       "plate": "art/open-01-plate.jpg",
       "top": "Why the ticket made sense.",
-      "band": "The last place he stood left a mark that does not show on a face. A room that wanted a kind number. He said the other number anyway. He is not proud of how it ended. He is not ashamed. Work is work. You look. You say what is true. You live with the room after.\n\nThat is why the ticket made sense. Not a new family. A clock, and a ship that needed someone who would not decorate a paragraph. He turns. The corridor will smell like metal and other people’s mornings."
+      "band": "The last place he stood left a mark that does not show on a face. A room that wanted a kind number. He said the other number anyway. He is not proud of how it ended. He is not ashamed. Work is work. You look. You say what is true. You live with the room after.\n\nThat is why the ticket made sense. Not a new family. A clock, and a ship that needed someone who would not decorate a paragraph. He turns. The corridor will smell like metal and other people\u2019s mornings."
     },
     {
       "id": "p06",
@@ -50,7 +50,7 @@
       "id": "p07",
       "plate": "art/p02-eli-candid.jpg",
       "top": "Habits are quieter than stories.",
-      "band": "The jacket is still too clean for this ship. That will last a day. Inside the left pocket a short patch lead waits — not Vesper issue, worn soft at the grips. He used it the last time a room wanted a kind number. He said the other number. The lead came with him."
+      "band": "The jacket is still too clean for this ship. That will last a day. Inside the left pocket a short patch lead waits \u2014 not Vesper issue, worn soft at the grips. He used it the last time a room wanted a kind number. He said the other number. The lead came with him."
     },
     {
       "id": "p08",
@@ -74,7 +74,7 @@
       "id": "p11",
       "plate": "art/p04-mess.jpg",
       "top": "The ship lives close.",
-      "band": "They pass the mess because every path on Vesper passes the mess. Two mugs. A lamp that has outlived three captains. The planet in the window like a fact no one has to vote on. When the vents cycle, the chalk smell comes again — faint, stubborn, like a blackboard no one has washed."
+      "band": "They pass the mess because every path on Vesper passes the mess. Two mugs. A lamp that has outlived three captains. The planet in the window like a fact no one has to vote on. When the vents cycle, the chalk smell comes again \u2014 faint, stubborn, like a blackboard no one has washed."
     },
     {
       "id": "p12",
@@ -98,13 +98,13 @@
       "id": "p15",
       "plate": "art/open-03-briefing-eli.jpg",
       "top": "The room is too small for the map.",
-      "band": "The table is older than the ship’s paint. A map is pinned as if paper still matters. Four people can stand here if no one breathes like they own the place. Coffee has gone cold in a cup with no name on it. Holm’s welcome still sits folded at the corner, unopened.\n\nMaddox does not look up at once. That is not rudeness. That is a woman finishing a sentence in her head. When she does look, it is the look you give a tool you have not tested."
+      "band": "The table is older than the ship\u2019s paint. A map is pinned as if paper still matters. Four people can stand here if no one breathes like they own the place. Coffee has gone cold in a cup with no name on it. Holm\u2019s welcome still sits folded at the corner, unopened.\n\nMaddox does not look up at once. That is not rudeness. That is a woman finishing a sentence in her head. When she does look, it is the look you give a tool you have not tested."
     },
     {
       "id": "p16",
       "plate": "art/open-03-briefing-eli.jpg",
       "top": "Open tonight.",
-      "band": "The map has a square in pencil. Clinic. Open tonight. Around the square, smaller marks that mean power, air, talk between the prefab and the ship. Her thumb finds the school mark outside the square and stays there half a breath too long — long enough to mean she has already done the math for the people sleeping on those floors. Then the thumb moves. Eli does not speak yet. Rooms like this punish the first sentence if it is decoration."
+      "band": "The map has a square in pencil. Clinic. Open tonight. Around the square, smaller marks that mean power, air, talk between the prefab and the ship. Her thumb finds the school mark outside the square and stays there half a breath too long \u2014 long enough to mean she has already done the math for the people sleeping on those floors. Then the thumb moves. Eli does not speak yet. Rooms like this punish the first sentence if it is decoration."
     },
     {
       "id": "p17",
@@ -122,7 +122,7 @@
       "id": "p19",
       "plate": "art/open-03-briefing-plate.jpg",
       "top": "What the ship can see.",
-      "band": "On the borrowed board at Eli’s elbow the clinic is not a paragraph. It is a live thing talking to Vesper. Every nine minutes the power stutters. Short. Ugly. Then it pretends it did not. The slate cannot see that. The slate was written by people who needed tonight more than they needed a second instrument.\n\nPaper says ready. The ship says hitching. If they open on the clock, someone on the ground inherits that hitch in the dark — chalk in the vents and all."
+      "band": "On the borrowed board at Eli\u2019s elbow the clinic is not a paragraph. It is a live thing talking to Vesper. Every nine minutes the power stutters. Short. Ugly. Then it pretends it did not. The slate cannot see that. The slate was written by people who needed tonight more than they needed a second instrument.\n\nPaper says ready. The ship says hitching. If they open on the clock, someone on the ground inherits that hitch in the dark \u2014 chalk in the vents and all."
     },
     {
       "id": "p20",
@@ -140,13 +140,13 @@
       "id": "p22",
       "plate": "art/open-03-briefing-eli.jpg",
       "top": "Tonight waits.",
-      "band": "The room changes temperature without anyone touching the air. Maddox’s thumb leaves the school mark as if the decision took the heat with it.\n\nMADDOX\n\"Then tonight waits until the power makes sense. Warm the shuttle. Hale comes. We look at the thing that is lying.\"\n\nReyes is already off the wall.\n\nREYES\n\"About time somebody said the quiet part with the board still glowing.\""
+      "band": "The room changes temperature without anyone touching the air. Maddox\u2019s thumb leaves the school mark as if the decision took the heat with it.\n\nMADDOX\n\"Then tonight waits until the power makes sense. Warm the shuttle. Hale comes. We look at the thing that is lying.\"\n\nReyes is already off the wall.\n\nREYES\n\"About time somebody said the quiet part with the board still glowing.\""
     },
     {
       "id": "p23",
       "plate": "art/p10-shuttle-01.jpg",
       "top": "The bay opens its throat.",
-      "band": "They leave Holm’s welcome folded where it was. The corridor takes them past the mess without stopping. The chalk smell rides the vents harder as the shuttle bay opens its throat — craft waiting, Halden-4 bright beyond the door.\n\nEli’s hand finds the patch lead in his pocket and lets it go. Habits do not fix a prefab. Eyes do."
+      "band": "They leave Holm\u2019s welcome folded where it was. The corridor takes them past the mess without stopping. The chalk smell rides the vents harder as the shuttle bay opens its throat \u2014 craft waiting, Halden-4 bright beyond the door.\n\nEli\u2019s hand finds the patch lead in his pocket and lets it go. Habits do not fix a prefab. Eyes do."
     },
     {
       "id": "p24",
@@ -158,7 +158,7 @@
       "id": "p25",
       "plate": "art/p10-shuttle-03.jpg",
       "top": "Down to the pad.",
-      "band": "The shuttle drops toward a pad that has been waiting on doors. Through the bay frame the prefab is still only a hint — a box and heat and the promise of chalk. The colonial clock does not care how the drop feels."
+      "band": "The shuttle drops toward a pad that has been waiting on doors. Through the bay frame the prefab is still only a hint \u2014 a box and heat and the promise of chalk. The colonial clock does not care how the drop feels."
     },
     {
       "id": "p26",
@@ -170,19 +170,19 @@
       "id": "p27",
       "plate": "art/p08-prefab.jpg",
       "top": "Nine minutes is not a theory.",
-      "band": "You can feel the hitch if you stand still with your hand on the rail — short, ugly, then the quiet that pretends it did not happen.\n\nPeople on the ground will sleep under this roof tonight if the clock wins. From here the school is a low shape and a rumor of beds. The clinic is a box that talks and then does not."
+      "band": "You can feel the hitch if you stand still with your hand on the rail \u2014 short, ugly, then the quiet that pretends it did not happen.\n\nPeople on the ground will sleep under this roof tonight if the clock wins. From here the school is a low shape and a rumor of beds. The clinic is a box that talks and then does not."
     },
     {
       "id": "p28",
       "plate": "art/p08-prefab.jpg",
       "top": "Once is a story.",
-      "band": "Maddox walks the perimeter like a woman counting lies. Reyes watches the sky for the ship’s shadow and finds it. Eli watches the rail through another nine minutes because once is a story and twice is a system."
+      "band": "Maddox walks the perimeter like a woman counting lies. Reyes watches the sky for the ship\u2019s shadow and finds it. Eli watches the rail through another nine minutes because once is a story and twice is a system."
     },
     {
       "id": "p29",
       "plate": "art/p08-prefab.jpg",
       "top": "Whoever is honest first.",
-      "band": "MADDOX\n\"We do not open what we have not watched fail. Holm can keep his welcome folded until we have something true to walk into.\"\n\nREYES (quiet)\n\"School’s still full. Clock’s still a clock. At least the paragraph stopped winning by itself.\"\n\nThe shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first.\n\nChapter one ends here."
+      "band": "MADDOX\n\"We do not open what we have not watched fail. Holm can keep his welcome folded until we have something true to walk into.\"\n\nREYES (quiet)\n\"School\u2019s still full. Clock\u2019s still a clock. At least the paragraph stopped winning by itself.\"\n\nThe shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first.\n\nChapter one ends here."
     }
   ],
   "hinge": {

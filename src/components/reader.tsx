@@ -205,24 +205,21 @@ function Opening({ onBegin }: { onBegin: () => void }) {
           style={{ opacity: 0, pointerEvents: "none" }}
         />
       )}
+      {trailerEnabled && !playing ? (
+        <button type="button" className="hit" aria-label="Watch the intro" onClick={playTrailer} />
+      ) : null}
       {trailerEnabled && playing ? (
-        <button type="button" className="hit" aria-label="Leave the reel" onClick={enterBook} />
+        <button type="button" className="hit" aria-label="Skip the intro" onClick={enterBook} />
       ) : null}
       {trailerEnabled && playing && muted ? (
         <button type="button" className="sound-hint" onClick={unmute}>
           Tap for sound
         </button>
       ) : null}
-      {trailerEnabled ? (
-        playing ? (
-          <button type="button" className="skip" onClick={enterBook}>
-            Skip
-          </button>
-        ) : (
-          <button type="button" className="skip" onClick={playTrailer}>
-            Play
-          </button>
-        )
+      {trailerEnabled && playing ? (
+        <button type="button" className="skip" onClick={enterBook}>
+          Skip
+        </button>
       ) : null}
       <button type="button" className="begin on" onClick={enterBook}>
         {book.beginLabel}

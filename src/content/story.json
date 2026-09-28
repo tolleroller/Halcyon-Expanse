@@ -80,7 +80,7 @@
       {
         "plate": "art/p08-prefab.jpg",
         "top": "The clinic, first look.",
-        "band": "It is smaller than the map promised and quieter than the slate allowed. Heat comes off the pad. Nine minutes is not a theory here. You can feel the hitch if you stand still with your hand on the rail.\n\nPeople on the ground will sleep under this roof tonight if the clock wins."
+        "band": "It is smaller than the map promised and quieter than the slate allowed. Heat comes off the pad. Nine minutes is not a theory here. You can feel the hitch if you stand still with your hand on the rail.\n\nPeople on the ground will sleep under this roof tonight if the clock wins. The shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first."
       }
     ],
     "adequate": [
@@ -91,7 +91,7 @@
       {
         "plate": "art/p08-prefab.jpg",
         "top": "The clinic, first look.",
-        "band": "He asked to see it. He has not yet said what the board already said. The building waits in the dust like a sentence with the last word missing."
+        "band": "He asked to see it. He has not yet said what the board already said. The building waits in the dust like a sentence with the last word missing. Heat comes off the pad. Stand still with a hand on the rail and nine minutes is not a theory.\n\nThe shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first."
       }
     ],
     "weak": [
@@ -102,14 +102,9 @@
       {
         "plate": "art/p08-prefab.jpg",
         "top": "The clinic, first look.",
-        "band": "The slate was kind. The power is not. He is on the ground because she would not let him stay in the room and call that arriving."
+        "band": "The slate was kind. The power is not. He is on the ground because she would not let him stay in the room and call that arriving. The clinic is smaller than the map promised. Heat comes off the pad. You can feel the hitch if you stand still with your hand on the rail.\n\nThe shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first."
       }
     ]
   },
-  "join": [
-    {
-      "plate": "art/p08-prefab.jpg",
-      "band": "The shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first.\n\nThe book continues. This slice stops here."
-    }
-  ]
+  "join": []
 }

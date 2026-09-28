@@ -10,7 +10,7 @@ import { assetUrl, book, type PlateBeat } from "../lib/book";
 import { gradeHinge, type HingeBand } from "../lib/grade-hinge";
 import { parseBand } from "../lib/prose";
 
-const SAVE_KEY = "halcyon-expanse-v5";
+const SAVE_KEY = "halcyon-expanse-v6";
 
 const MAX_LIFT = 0.9;
 const PEEK_FALLBACK = 60;
@@ -226,12 +226,12 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
       const list = book.aftermath[phase.band];
       if (phase.index < list.length - 1) {
         onPhase({ kind: "aftermath", index: phase.index + 1, band: phase.band });
-      } else {
+      } else if (book.join.length > 0) {
         onPhase({ kind: "join", index: 0, band: phase.band });
       }
       return;
     }
-    if (phase.kind === "join" && phase.index < book.join.length - 1) {
+    if (phase.kind === "join" && book.join.length > 0 && phase.index < book.join.length - 1) {
       onPhase({ kind: "join", index: phase.index + 1, band: phase.band });
     }
   }
@@ -510,7 +510,14 @@ function currentBeat(phase: Exclude<Phase, { kind: "opening" }>): PlateBeat {
 }
 
 function isLast(phase: Phase): boolean {
-  return phase.kind === "join" && phase.index >= book.join.length - 1;
+  if (phase.kind === "join") {
+    return book.join.length === 0 || phase.index >= book.join.length - 1;
+  }
+  if (phase.kind === "aftermath") {
+    const list = book.aftermath[phase.band];
+    return phase.index >= list.length - 1 && book.join.length === 0;
+  }
+  return false;
 }
 
 function BandText({ band }: { band: string }) {

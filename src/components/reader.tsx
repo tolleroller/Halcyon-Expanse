@@ -15,7 +15,7 @@ const SAVE_KEY = "halcyon-expanse-v8";
 const MAX_LIFT = 0.9;
 const PEEK_FALLBACK = 60;
 /** First open / one-swipe snap: about 30% of stage height (content-fit, never taller). */
-const FIRST_OPEN_SCREEN = 0.3;
+const FIRST_OPEN_SCREEN = 0.38;
 const GRIP_CHROME = 56;
 
 type Phase =

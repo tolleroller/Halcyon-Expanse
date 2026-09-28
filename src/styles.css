@@ -25,6 +25,7 @@ body {
   inset: 0;
   background: #120e0b;
   overflow: hidden;
+  overscroll-behavior: none;
   touch-action: manipulation;
   user-select: none;
 }
@@ -108,7 +109,7 @@ body {
 }
 
 .sheet {
-  --peek: calc(52px + env(safe-area-inset-bottom));
+  --peek: calc(60px + env(safe-area-inset-bottom));
   --lift: 0;
   position: absolute;
   z-index: 5;
@@ -120,14 +121,17 @@ body {
   flex-direction: column;
   background: rgba(12, 10, 8, 0.82);
   color: #f4efe6;
-  border-radius: 18px 18px 0 0;
+  border-radius: 14px 14px 0 0;
   overflow: hidden;
-  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.32);
+  box-shadow:
+    0 -12px 32px rgba(0, 0, 0, 0.32),
+    0 -1px 0 rgba(126, 211, 224, 0.35),
+    0 -6px 18px rgba(126, 211, 224, 0.12);
   transition: height 0.22s ease;
 }
 
 .sheet.peek {
-  background: rgba(12, 10, 8, 0.55);
+  background: rgba(12, 10, 8, 0.62);
 }
 
 .sheet.dragging {
@@ -135,25 +139,59 @@ body {
 }
 
 .sheet-grip {
-  flex: 0 0 44px;
+  position: relative;
+  flex: 0 0 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 10px 12px 8px;
   border: 0;
-  background: transparent;
-  color: rgba(247, 241, 232, 0.86);
+  border-top: 1px solid rgba(160, 190, 205, 0.42);
+  background:
+    linear-gradient(180deg, rgba(126, 211, 224, 0.1), transparent 55%),
+    transparent;
+  color: rgba(247, 241, 232, 0.9);
   touch-action: none;
+  box-shadow: inset 0 1px 0 rgba(200, 230, 240, 0.18);
+}
+
+.sheet-rail {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(126, 211, 224, 0.85) 20%,
+    rgba(190, 220, 230, 0.95) 50%,
+    rgba(126, 211, 224, 0.85) 80%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(126, 211, 224, 0.55);
+  pointer-events: none;
 }
 
 .grip {
-  width: 36px;
+  width: 40px;
   height: 4px;
   border-radius: 999px;
-  background: rgba(244, 239, 230, 0.78);
+  background: rgba(200, 230, 240, 0.88);
+  box-shadow: 0 0 8px rgba(126, 211, 224, 0.35);
+}
+
+.sheet-tag {
+  font-family: inherit;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+  color: rgba(126, 211, 224, 0.78);
+  text-shadow: 0 0 8px rgba(126, 211, 224, 0.35);
 }
 
 .veil {
@@ -162,6 +200,7 @@ body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
   background: transparent;
   color: inherit;
@@ -171,6 +210,14 @@ body {
   line-height: 1.45;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
   user-select: text;
+  transition: opacity 0.18s ease;
+}
+
+.sheet.peek .veil {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .veil-inner {

@@ -10,7 +10,10 @@ import { assetUrl, book, type PlateBeat } from "../lib/book";
 import { gradeHinge, type HingeBand } from "../lib/grade-hinge";
 import { parseBand } from "../lib/prose";
 
-const SAVE_KEY = "halcyon-expanse-v4";
+const SAVE_KEY = "halcyon-expanse-v5";
+
+const MAX_LIFT = 0.9;
+const PEEK_FALLBACK = 60;
 
 type Phase =
   | { kind: "opening" }
@@ -264,9 +267,10 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     const stageH = stage?.getBoundingClientRect().height ?? window.innerHeight;
     const kb = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--kb")) || 0;
     const max = Math.max(80, stageH - kb);
-    const current = sheet?.getBoundingClientRect().height ?? 52;
-    const peek = fromLift >= 0.999 ? current : (current - fromLift * max) / Math.max(0.001, 1 - fromLift);
-    return { max, peek: Number.isFinite(peek) ? peek : 52 };
+    const current = sheet?.getBoundingClientRect().height ?? PEEK_FALLBACK;
+    // height = peek + lift * (max - peek)  =>  peek = (current - lift * max) / (1 - lift)
+    const peek = (current - fromLift * max) / Math.max(0.001, 1 - fromLift);
+    return { max, peek: Number.isFinite(peek) && peek > 20 ? peek : PEEK_FALLBACK };
   }
 
   function onGripPointerDown(event: ReactPointerEvent<HTMLButtonElement>) {
@@ -283,7 +287,7 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     if (!start || start.id !== event.pointerId) return;
     const range = Math.max(1, start.max - start.peek);
     const next = start.lift + (start.y - event.clientY) / range;
-    setLift(Math.min(1, Math.max(0, next)));
+    setLift(Math.min(MAX_LIFT, Math.max(0, next)));
   }
 
   function onGripPointerUp(event: ReactPointerEvent<HTMLButtonElement>) {
@@ -295,7 +299,11 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
       setLift(start.lift < 0.08 ? 0.58 : 0);
       return;
     }
-    setLift((value) => (value < 0.06 ? 0 : value > 0.96 ? 1 : value));
+    setLift((value) => {
+      if (value < 0.08) return 0;
+      if (value > 0.72) return MAX_LIFT;
+      return value;
+    });
   }
 
   useEffect(() => {
@@ -354,6 +362,58 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     if (body) body.scrollTop = 0;
   }, [beatId]);
 
+  useEffect(() => {
+    const veil = bodyRef.current;
+    if (!veil) return;
+    let startY = 0;
+    let startLift = 0;
+    let collapsing = false;
+
+    const onStart = (event: TouchEvent) => {
+      if (liftRef.current < 0.08 || event.touches.length !== 1) return;
+      startY = event.touches[0].clientY;
+      startLift = liftRef.current;
+      collapsing = false;
+    };
+
+    const onMove = (event: TouchEvent) => {
+      if (liftRef.current < 0.08 || event.touches.length !== 1) return;
+      const dy = event.touches[0].clientY - startY;
+      if (veil.scrollTop <= 0 && dy > 0) {
+        collapsing = true;
+        event.preventDefault();
+        const { max, peek } = sheetMetrics(startLift);
+        const range = Math.max(1, max - peek);
+        setLift(Math.min(MAX_LIFT, Math.max(0, startLift - dy / range)));
+      } else if (collapsing) {
+        collapsing = false;
+        startY = event.touches[0].clientY;
+        startLift = liftRef.current;
+      }
+    };
+
+    const settle = () => {
+      if (!collapsing) return;
+      collapsing = false;
+      setLift((value) => {
+        if (value < 0.08) return 0;
+        if (value > 0.72) return MAX_LIFT;
+        return value;
+      });
+    };
+
+    veil.addEventListener("touchstart", onStart, { passive: true });
+    veil.addEventListener("touchmove", onMove, { passive: false });
+    veil.addEventListener("touchend", settle);
+    veil.addEventListener("touchcancel", settle);
+    return () => {
+      veil.removeEventListener("touchstart", onStart);
+      veil.removeEventListener("touchmove", onMove);
+      veil.removeEventListener("touchend", settle);
+      veil.removeEventListener("touchcancel", settle);
+    };
+  });
+
   return (
     <main
       className="stage"
@@ -392,15 +452,15 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
       {beat.top ? <p className="top">{beat.top}</p> : null}
       <section
         ref={sheetRef}
-        className={draggingSheet ? "sheet dragging" : lift < 0.04 ? "sheet peek" : "sheet"}
+        className={["sheet", draggingSheet ? "dragging" : "", lift < 0.1 ? "peek" : ""].filter(Boolean).join(" ")}
         style={{ "--lift": lift } as CSSProperties}
         aria-label="Story"
       >
         <button
           type="button"
           className="sheet-grip"
-          aria-expanded={lift > 0.04}
-          aria-label={lift < 0.04 ? "Open the story" : "Resize the story"}
+          aria-expanded={lift > 0.08}
+          aria-label={lift < 0.08 ? "Open the story" : "Resize the story"}
           onPointerDown={onGripPointerDown}
           onPointerMove={onGripPointerMove}
           onPointerUp={onGripPointerUp}
@@ -409,10 +469,12 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
             setDraggingSheet(false);
           }}
         >
+          <span className="sheet-rail" aria-hidden="true" />
           <span className="grip" />
+          <span className="sheet-tag">STORY</span>
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
             <path
-              d={lift > 0.92 ? "M6 10.5 12 16.5l6-6" : "M6 14.5 12 8.5l6 6"}
+              d={lift > MAX_LIFT * 0.85 ? "M6 10.5 12 16.5l6-6" : "M6 14.5 12 8.5l6 6"}
               fill="none"
               stroke="currentColor"
               strokeWidth="1.75"

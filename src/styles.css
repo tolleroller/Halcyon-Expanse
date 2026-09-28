@@ -40,21 +40,22 @@ body {
   animation: plate-in 0.55s ease;
 }
 
-/* Opening cover: fit the WHOLE painting first (title visible), then slow zoom-in. */
+/* Opening cover: edge-to-edge fill, then slow Ken Burns push-in. */
 .plate.cover {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  /* Slightly favor title + ship on ultra-tall phones (crop planet more than title). */
+  object-position: center 42%;
   background: #120e0b;
   transform-origin: center center;
   will-change: transform;
 }
 
 .plate.cover:not(.video) {
-  /* Hold start scale still until .cover-motion (settle ~3s in Opening). */
-  transform: scale(0.92);
+  /* Hold scale 1 (already filling) still until .cover-motion (settle ~3s in Opening). */
+  transform: scale(1);
   animation: none;
 }
 
@@ -420,10 +421,10 @@ body {
 
 @keyframes cover-ken {
   from {
-    transform: scale(0.92);
+    transform: scale(1);
   }
   to {
-    transform: scale(1.06);
+    transform: scale(1.1);
   }
 }
 
@@ -462,6 +463,6 @@ body {
   .plate.cover:not(.video),
   .plate.cover:not(.video).cover-motion {
     animation: none;
-    transform: scale(0.92);
+    transform: scale(1);
   }
 }

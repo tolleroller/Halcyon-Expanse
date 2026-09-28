@@ -103,64 +103,15 @@ export function Reader() {
 }
 
 const COVER_SETTLE_MS = 3000;
-const UNDERSCORE_VOLUME = 0.32;
 
 function Opening({ onBegin }: { onBegin: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const fadeRef = useRef<number | null>(null);
-  const underscoreOn = useRef(true);
   const trailerEnabled = book.trailerEnabled === true;
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [coverMotion, setCoverMotion] = useState(false);
 
-  function clearFade() {
-    if (fadeRef.current != null) {
-      window.clearInterval(fadeRef.current);
-      fadeRef.current = null;
-    }
-  }
-
-  function stopUnderscore(fadeMs = 400) {
-    underscoreOn.current = false;
-    const audio = audioRef.current;
-    if (!audio) return;
-    clearFade();
-    if (audio.paused || fadeMs <= 0) {
-      audio.pause();
-      audio.currentTime = 0;
-      return;
-    }
-    const start = audio.volume;
-    const steps = Math.max(4, Math.round(fadeMs / 40));
-    let i = 0;
-    fadeRef.current = window.setInterval(() => {
-      i += 1;
-      const next = start * (1 - i / steps);
-      audio.volume = Math.max(0, next);
-      if (i >= steps) {
-        clearFade();
-        audio.pause();
-        audio.currentTime = 0;
-        audio.volume = UNDERSCORE_VOLUME;
-      }
-    }, 40);
-  }
-
-  function tryPlayUnderscore() {
-    const audio = audioRef.current;
-    if (!audio || !underscoreOn.current) return;
-    clearFade();
-    audio.volume = UNDERSCORE_VOLUME;
-    audio.loop = true;
-    void audio.play().catch(() => {
-      /* iOS / autoplay policy — unlock on first pointerdown */
-    });
-  }
-
   function enterBook() {
-    stopUnderscore(350);
     const video = videoRef.current;
     if (video) {
       video.pause();
@@ -171,7 +122,6 @@ function Opening({ onBegin }: { onBegin: () => void }) {
 
   async function playTrailer() {
     if (!trailerEnabled) return;
-    stopUnderscore(500);
     const video = videoRef.current;
     if (!video) return;
     video.playsInline = true;
@@ -214,31 +164,6 @@ function Opening({ onBegin }: { onBegin: () => void }) {
   }, []);
 
   useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.volume = UNDERSCORE_VOLUME;
-      audio.loop = true;
-    }
-    tryPlayUnderscore();
-
-    const unlock = () => {
-      tryPlayUnderscore();
-    };
-    const stage = document.querySelector(".stage");
-    stage?.addEventListener("pointerdown", unlock, { once: true, passive: true });
-    stage?.addEventListener("touchstart", unlock, { once: true, passive: true });
-
-    return () => {
-      clearFade();
-      stage?.removeEventListener("pointerdown", unlock);
-      stage?.removeEventListener("touchstart", unlock);
-      if (audio) {
-        audio.pause();
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     if (!trailerEnabled) return;
     const video = videoRef.current;
     if (!video) return;
@@ -252,13 +177,11 @@ function Opening({ onBegin }: { onBegin: () => void }) {
 
   const cover = assetUrl(book.cover);
   const trailer = assetUrl(book.trailer);
-  const underscore = assetUrl("audio/opening-underscore.mp3");
   const coverClass = coverMotion ? "plate cover cover-motion" : "plate cover";
 
   return (
     <main className="stage" aria-label={book.title}>
       <img className={coverClass} src={cover} alt="" />
-      <audio ref={audioRef} src={underscore} preload="auto" loop />
       {trailerEnabled ? (
         <video
           ref={videoRef}

@@ -40,6 +40,21 @@ body {
   animation: plate-in 0.55s ease;
 }
 
+/* Opening cover: start slightly zoomed out so the painted title has margin, then slow Ken Burns in. */
+.plate.cover {
+  inset: auto;
+  top: -8%;
+  left: -8%;
+  width: 116%;
+  height: 116%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.plate.cover:not(.video) {
+  animation: cover-ken 10s ease-out forwards;
+}
+
 .plate.video {
   z-index: 1;
   background: transparent;
@@ -396,6 +411,15 @@ body {
   }
 }
 
+@keyframes cover-ken {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
 @keyframes veil-in {
   from {
     opacity: 0;
@@ -426,5 +450,9 @@ body {
   .sheet {
     animation: none;
     transition: none;
+  }
+
+  .plate.cover:not(.video) {
+    transform: none;
   }
 }

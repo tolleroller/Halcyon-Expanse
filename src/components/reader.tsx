@@ -161,10 +161,10 @@ function Opening({ onBegin }: { onBegin: () => void }) {
 
   return (
     <main className="stage" aria-label={book.title}>
-      <img className="plate" src={cover} alt="" />
+      <img className="plate cover" src={cover} alt="" />
       <video
         ref={videoRef}
-        className={playing ? "plate video on" : "plate video"}
+        className={playing ? "plate cover video on" : "plate cover video"}
         src={trailer}
         poster={cover}
         playsInline

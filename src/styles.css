@@ -53,6 +53,12 @@ body {
 }
 
 .plate.cover:not(.video) {
+  /* Hold start scale still until .cover-motion (settle ~3s in Opening). */
+  transform: scale(0.92);
+  animation: none;
+}
+
+.plate.cover:not(.video).cover-motion {
   animation: cover-ken 12s ease-out forwards;
 }
 
@@ -453,7 +459,8 @@ body {
     transition: none;
   }
 
-  .plate.cover:not(.video) {
+  .plate.cover:not(.video),
+  .plate.cover:not(.video).cover-motion {
     animation: none;
     transform: scale(0.92);
   }

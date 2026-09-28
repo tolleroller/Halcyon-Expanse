@@ -23,7 +23,7 @@ npm run preview
 
 Serve over HTTPS or localhost. On a phone on the same network, use the machine’s LAN IP with the Vite host flag (already `host: true`). Add to Home Screen from Safari/Chrome for the standalone shell. Theme color is `#120e0b`.
 
-Save key: `halcyon-expanse-v4` (pages p01–p07 + hinge after p07).
+Save key: `halcyon-expanse-v7` (Chapter 1 Arrival, 12 pages; hinge deferred).
 
 ## Content
 

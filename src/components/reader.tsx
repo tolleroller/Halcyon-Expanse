@@ -10,7 +10,7 @@ import { assetUrl, book, type PlateBeat } from "../lib/book";
 import { gradeHinge, type HingeBand } from "../lib/grade-hinge";
 import { parseBand } from "../lib/prose";
 
-const SAVE_KEY = "halcyon-expanse-v6";
+const SAVE_KEY = "halcyon-expanse-v7";
 
 const MAX_LIFT = 0.9;
 const PEEK_FALLBACK = 60;
@@ -34,12 +34,17 @@ function loadPhase(): Phase | null {
     if (data.kind === "page" && typeof data.index === "number") {
       if (data.index >= 0 && data.index < book.pages.length) return { kind: "page", index: data.index };
     }
-    if (data.kind === "hinge") return { kind: "hinge" };
+    if (data.kind === "hinge") {
+      // Parked / inactive hinge: never resume into hinge UI from an old save.
+      if (!isHingeActive()) return { kind: "page", index: Math.max(0, book.pages.length - 1) };
+      return { kind: "hinge" };
+    }
     if (
       (data.kind === "aftermath" || data.kind === "join") &&
       isBand(data.band) &&
       typeof data.index === "number"
     ) {
+      if (!isHingeActive()) return { kind: "page", index: Math.max(0, book.pages.length - 1) };
       const list = data.kind === "aftermath" ? book.aftermath[data.band] : book.join;
       if (data.index >= 0 && data.index < list.length) {
         return { kind: data.kind, index: data.index, band: data.band };
@@ -212,10 +217,9 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
   function turn() {
     if (phase.kind === "page") {
       const page = book.pages[phase.index];
-      const atField = book.hinge.afterPage
-        ? page?.id === book.hinge.afterPage
-        : phase.index >= book.pages.length - 1;
-      if (atField) {
+      const hingePage = hingeAfterPageId();
+      // Only enter hinge when afterPage is a real live page id (not deferred/missing).
+      if (hingePage && page?.id === hingePage) {
         onPhase({ kind: "hinge" });
         return;
       }
@@ -495,8 +499,19 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
   );
 }
 
+/** Active hinge target, or null when parked / invalid (never fire from turn). */
+function hingeAfterPageId(): string | null {
+  const id = book.hinge.afterPage?.trim() ?? "";
+  if (!id || id === "__deferred__") return null;
+  return book.pages.some((page) => page.id === id) ? id : null;
+}
+
+function isHingeActive(): boolean {
+  return hingeAfterPageId() !== null;
+}
+
 function afterPageIndex(): number {
-  const id = book.hinge.afterPage;
+  const id = hingeAfterPageId();
   if (!id) return Math.max(0, book.pages.length - 1);
   const index = book.pages.findIndex((page) => page.id === id);
   return index >= 0 ? index : Math.max(0, book.pages.length - 1);
@@ -510,6 +525,11 @@ function currentBeat(phase: Exclude<Phase, { kind: "opening" }>): PlateBeat {
 }
 
 function isLast(phase: Phase): boolean {
+  if (phase.kind === "page") {
+    if (phase.index < book.pages.length - 1) return false;
+    // Last page ends the chapter cleanly when hinge is inactive (no empty join).
+    return !isHingeActive();
+  }
   if (phase.kind === "join") {
     return book.join.length === 0 || phase.index >= book.join.length - 1;
   }

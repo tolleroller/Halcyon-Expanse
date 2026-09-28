@@ -1,0 +1,80 @@
+{
+  "title": "Halcyon Expanse",
+  "beginLabel": "BEGIN",
+  "cover": "art/cover-matched.jpg",
+  "trailer": "video/trailer-v5.mp4",
+  "dialogue": "NAME on its own line. (action) smaller. Quoted speech italic.",
+  "pages": [
+    {
+      "id": "p01",
+      "plate": "art/open-01-plate.jpg",
+      "top": "Eleven hours over Halden-4.",
+      "band": "The ship is quiet in the way a ship is quiet when the work has already started without you. Behind the glass Halden-4 fills the frame, amber and slow, a world with weather and a clock. Eli Hale stands with his hands in his jacket and lets the planet do the talking.\n\nHe has been aboard eleven hours. He knows the sound of a relief hull. He does not know this one yet. The Vesper is small on purpose. People live close. Coffee lives longer than it should. Someone has already written his name on a board in a room he has not seen.\n\nThe letter that brought him was one page. A clinic on Halden-4 is supposed to open tonight. The ground people have been waiting on doors. The ship needed a systems engineer who would look at the site and say what was true. That was the whole invitation. No romance in it. No warning.\n\nHalden-4 is not empty. It is thin. A few roofs. A pad. A clinic meant to take breath and give it back by evening. Official language calls that occupancy. People on the ground call it the first night they are allowed to walk in.\n\nThe last place he stood left a mark that does not show on a face. A room that wanted a kind number. He said the other number anyway. He is not proud of how it ended. He is not ashamed. Work is work. You look. You say what is true. You live with the room after.\n\nThat is why the ticket made sense. Not a new family. A clock, and a ship that needed someone who would not decorate a paragraph.\n\nHe watches the planet a little longer than a man who is only passing through. Then he turns. The corridor will smell like metal and other people’s mornings."
+    },
+    {
+      "id": "p02",
+      "plate": "art/p02-eli-candid.jpg",
+      "top": "Eli Hale.",
+      "band": "He is thirty-four. He reads rooms the way some men read faces. Power. Air. The talk between machines. The small lie a file tells when it has been copied too many times. He is not command. He is not a lieutenant. He is the person you want when two clocks disagree and both of them are polite.\n\nThe jacket is still too clean for this ship. That will last a day. What will not last is the idea that standing at a window is the same as arriving.\n\nHe came up through yards and grids and relief hulls that all smelled a little like this one. He is good at the quiet work. He is less good at being new. He puts his hands in his pockets because the alternative is touching a bulkhead he does not own yet.\n\nSomewhere ahead a woman is already tired of waiting on a second voice. He goes to find her."
+    },
+    {
+      "id": "p03",
+      "plate": "art/p03-reyes.jpg",
+      "top": "Reyes.",
+      "band": "She finds him before the welcome does. She has the walk of someone who has already done three jobs before breakfast. She does not offer a tour. She offers a direction.\n\nREYES (without slowing)\n\"You're Hale. Maddox wants you first. Holm can do the speech later. We have a clinic on the clock.\"\n\nHe matches her pace. The corridor is narrow enough that you learn a person by how they do not run you into a bulkhead. Reyes does not. That is a kind of kindness. It is also a kind of hurry.\n\nShe has been on Vesper long enough that the ship has a shape in her shoulders. She knows where the deck lifts. She knows which hatch sticks. She does not waste a first meeting on weather.\n\nREYES (over her shoulder)\n\"Don't make her wait. She has been looking at a slate since last watch. She would like a voice that is not the slate.\"\n\nEli nods. It is the first useful thing he has done since the gallery."
+    },
+    {
+      "id": "p04",
+      "plate": "art/p04-mess.jpg",
+      "top": "The ship lives close.",
+      "band": "They pass the mess because every path on Vesper passes the mess. Two mugs. A lamp that has outlived three captains. The planet in the window like a fact no one has to vote on.\n\nThis is how a small ship tells you the truth. Not in a briefing. In the way cups are left for the next watch. In the notes stuck to a bulkhead in two handwritings. In the quiet that is not empty, only busy somewhere else.\n\nReyes does not stop. She tips her chin at the window as if Eli might have missed the world.\n\nREYES\n\"Clinic is that way when we go down. Tonight if the paper holds. People on the ground have been sleeping in a school.\"\n\nHe looks. From here the clinic is still only weather and distance. He will see it with his feet later. First he has to survive a room."
+    },
+    {
+      "id": "p05",
+      "plate": "art/p05-hatch.jpg",
+      "top": "The door with the light under it.",
+      "band": "The briefing hatch leaks map-light onto the deck. Someone inside is already talking in the low voice people use when a clock is in the room.\n\nEli puts his hand on the frame and does not go in until Reyes does. That is not fear. That is manners. You do not own a threshold you have not been given.\n\nHe can smell cold coffee. He can hear a name that is not his. Then Reyes knocks once with her knuckle, which is not a request.\n\nREYES\n\"Hale.\"\n\nThe talking stops. The door knows how to open."
+    },
+    {
+      "id": "p06",
+      "plate": "art/open-03-briefing-plate.jpg",
+      "top": "The room is too small for the map.",
+      "band": "The table is older than the ship’s paint. A map is pinned as if paper still matters. Four people can stand here if no one breathes like they own the place. Coffee has gone cold in a cup with no name on it.\n\nMaddox does not look up at once. That is not rudeness. That is a woman finishing a sentence in her head. When she does look, it is the look you give a tool you have not tested.\n\nThe map has a square in pencil. Clinic. Open tonight. Around the square, smaller marks that mean power, air, talk between the prefab and the ship. Eli reads them the way he always has. He does not speak yet. Rooms like this punish the first sentence if it is decoration.\n\nMADDOX (still on the map)\n\"Holm wanted a welcome. I wanted a second pair of eyes before we tell the ground they can walk in. Sit if you want. I wouldn't.\"\n\nHe does not sit. Reyes takes the wall and becomes furniture in the useful way."
+    },
+    {
+      "id": "p07",
+      "plate": "art/open-03-briefing-plate.jpg",
+      "top": "Two stories about the same clinic.",
+      "band": "Maddox turns a slate so he can see it. The official story is short. The clinic is clean. The power is steady. The doors may open this evening. The colonial clock is printed as if clocks were stone.\n\nSomeone needed that paragraph to be true. That is not the same thing as it being true.\n\nOn the borrowed board at Eli’s elbow the clinic is not a paragraph. It is a live thing talking to Vesper. Every nine minutes the power stutters. Short. Ugly. Then it pretends it did not. The slate cannot see that. The slate was written by people who needed tonight more than they needed a second instrument.\n\nThis is not a riddle. Paper says the clinic is ready. The ship says the clinic’s own power is hitching like a man who cannot finish a sentence. If they open on the clock, someone on the ground inherits that hitch in the dark.\n\nMADDOX\n\"The slate says we open tonight. I asked for you because I am tired of being the only person in the room who does not love a paragraph. What do you see.\"\n\nThe room waits. Not as a game. As a room."
+    }
+  ],
+  "hinge": {
+    "id": "hinge-a",
+    "afterPage": "p07",
+    "plate": "art/open-03-briefing-plate.jpg",
+    "placeholder": "",
+    "truth": "Official slate says the clinic is clean and the power is steady and doors open tonight. Vesper's board shows the clinic power stuttering every nine minutes.",
+    "strongHints": ["stutter", "nine", "board", "slate", "power", "not ready", "do not open", "hitch", "mismatch", "paper", "wrong", "hold"],
+    "adequateHints": ["look", "see", "check", "go down", "watch", "prefab"]
+  },
+  "aftermath": {
+    "strong": [
+      {"plate": "art/open-03-briefing-plate.jpg", "band": "The room changes temperature without anyone touching the air.\n\nMADDOX\n\"Then tonight waits until the power makes sense. Warm the shuttle. Hale comes. We look at the thing that is lying.\""},
+      {"plate": "art/p08-prefab.jpg", "top": "The clinic, first look.", "band": "It is smaller than the map promised and quieter than the slate allowed. Heat comes off the pad. Nine minutes is not a theory here. You can feel the hitch if you stand still with your hand on the rail.\n\nPeople on the ground will sleep under this roof tonight if the clock wins."}
+    ],
+    "adequate": [
+      {"plate": "art/open-03-briefing-plate.jpg", "band": "MADDOX\n\"Go look. Be back before the window. I can live with a man who wants his own eyes.\""},
+      {"plate": "art/p08-prefab.jpg", "top": "The clinic, first look.", "band": "He asked to see it. He has not yet said what the board already said. The building waits in the dust like a sentence with the last word missing."}
+    ],
+    "weak": [
+      {"plate": "art/open-03-briefing-plate.jpg", "band": "MADDOX (even)\n\"I'll take the look. Hale comes. We do not open what we have not watched fail.\""},
+      {"plate": "art/p08-prefab.jpg", "top": "The clinic, first look.", "band": "The slate was kind. The power is not. He is on the ground because she would not let him stay in the room and call that arriving."}
+    ]
+  },
+  "join": [
+    {
+      "plate": "art/p08-prefab.jpg",
+      "band": "The shuttle ticks as it cools. The clinic is still on the board. The next hour belongs to whoever is honest first.\n\nThe book continues. This slice stops here."
+    }
+  ]
+}

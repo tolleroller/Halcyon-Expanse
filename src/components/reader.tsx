@@ -110,6 +110,7 @@ function Opening({ onBegin }: { onBegin: () => void }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeRef = useRef<number | null>(null);
   const underscoreOn = useRef(true);
+  const trailerEnabled = book.trailerEnabled === true;
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [coverMotion, setCoverMotion] = useState(false);
@@ -169,6 +170,7 @@ function Opening({ onBegin }: { onBegin: () => void }) {
   }
 
   async function playTrailer() {
+    if (!trailerEnabled) return;
     stopUnderscore(500);
     const video = videoRef.current;
     if (!video) return;
@@ -196,6 +198,7 @@ function Opening({ onBegin }: { onBegin: () => void }) {
   }
 
   function unmute() {
+    if (!trailerEnabled) return;
     const video = videoRef.current;
     if (!video) return;
     video.muted = false;
@@ -236,6 +239,7 @@ function Opening({ onBegin }: { onBegin: () => void }) {
   }, []);
 
   useEffect(() => {
+    if (!trailerEnabled) return;
     const video = videoRef.current;
     if (!video) return;
     const onEnded = () => setPlaying(false);
@@ -244,7 +248,7 @@ function Opening({ onBegin }: { onBegin: () => void }) {
       video.removeEventListener("ended", onEnded);
       video.pause();
     };
-  }, []);
+  }, [trailerEnabled]);
 
   const cover = assetUrl(book.cover);
   const trailer = assetUrl(book.trailer);
@@ -255,35 +259,52 @@ function Opening({ onBegin }: { onBegin: () => void }) {
     <main className="stage" aria-label={book.title}>
       <img className={coverClass} src={cover} alt="" />
       <audio ref={audioRef} src={underscore} preload="auto" loop />
-      <video
-        ref={videoRef}
-        className={playing ? "plate cover video on" : "plate cover video"}
-        src={trailer}
-        poster={cover}
-        playsInline
-        preload="metadata"
-      />
-      {playing ? <button type="button" className="hit" aria-label="Leave the reel" onClick={enterBook} /> : null}
-      {playing && muted ? (
+      {trailerEnabled ? (
+        <video
+          ref={videoRef}
+          className={playing ? "plate cover video on" : "plate cover video"}
+          src={trailer}
+          poster={cover}
+          playsInline
+          preload="metadata"
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          className="plate cover video"
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          tabIndex={-1}
+          style={{ opacity: 0, pointerEvents: "none" }}
+        />
+      )}
+      {trailerEnabled && playing ? (
+        <button type="button" className="hit" aria-label="Leave the reel" onClick={enterBook} />
+      ) : null}
+      {trailerEnabled && playing && muted ? (
         <button type="button" className="sound-hint" onClick={unmute}>
           Tap for sound
         </button>
       ) : null}
-      {playing ? (
-        <button type="button" className="skip" onClick={enterBook}>
-          Skip
-        </button>
-      ) : (
-        <button type="button" className="skip" onClick={playTrailer}>
-          Play
-        </button>
-      )}
+      {trailerEnabled ? (
+        playing ? (
+          <button type="button" className="skip" onClick={enterBook}>
+            Skip
+          </button>
+        ) : (
+          <button type="button" className="skip" onClick={playTrailer}>
+            Play
+          </button>
+        )
+      ) : null}
       <button type="button" className="begin on" onClick={enterBook}>
         {book.beginLabel}
       </button>
     </main>
   );
 }
+
 
 function isChromeTarget(target: EventTarget | null): boolean {
   return target instanceof Element && Boolean(target.closest("textarea, .field, .send, .back, .sheet"));

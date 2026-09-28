@@ -15,6 +15,7 @@ export type OpeningBook = {
   player?: string;
   cover: string;
   trailer: string;
+  trailerEnabled?: boolean;
   trailerRule?: string;
   beginLabel: string;
   dialogue?: string;

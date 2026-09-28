@@ -14,6 +14,9 @@ const SAVE_KEY = "halcyon-expanse-v8";
 
 const MAX_LIFT = 0.9;
 const PEEK_FALLBACK = 60;
+/** First open / one-swipe snap: about 30% of stage height (content-fit, never taller). */
+const FIRST_OPEN_SCREEN = 0.3;
+const GRIP_CHROME = 56;
 
 type Phase =
   | { kind: "opening" }
@@ -306,7 +309,24 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     const current = sheet?.getBoundingClientRect().height ?? PEEK_FALLBACK;
     // height = peek + lift * (max - peek)  =>  peek = (current - lift * max) / (1 - lift)
     const peek = (current - fromLift * max) / Math.max(0.001, 1 - fromLift);
-    return { max, peek: Number.isFinite(peek) && peek > 20 ? peek : PEEK_FALLBACK };
+    return { max, peek: Number.isFinite(peek) && peek > 20 ? peek : PEEK_FALLBACK, stageH };
+  }
+
+  /** One-swipe open: tall enough for the page text, capped near 30% of the screen. */
+  function readingLift() {
+    const { max, peek, stageH } = sheetMetrics(0);
+    const body = bodyRef.current;
+    const content = body ? body.scrollHeight : 160;
+    const needed = Math.min(peek + GRIP_CHROME + content, stageH * FIRST_OPEN_SCREEN);
+    const range = Math.max(1, max - peek);
+    return Math.min(FIRST_OPEN_SCREEN + 0.05, Math.max(0.18, (needed - peek) / range));
+  }
+
+  function snapSheet(value: number) {
+    const open = readingLift();
+    if (value < open * 0.45) return 0;
+    if (value < (open + MAX_LIFT) / 2) return open;
+    return MAX_LIFT;
   }
 
   function onGripPointerDown(event: ReactPointerEvent<HTMLButtonElement>) {
@@ -332,14 +352,11 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     setDraggingSheet(false);
     if (!start || start.id !== event.pointerId) return;
     if (Math.abs(start.y - event.clientY) < 8) {
-      setLift(start.lift < 0.08 ? 0.58 : 0);
+      // Tap: closed → reading snap (~30% / fit text); open → closed. Bigger needs a drag.
+      setLift(start.lift < 0.08 ? readingLift() : 0);
       return;
     }
-    setLift((value) => {
-      if (value < 0.08) return 0;
-      if (value > 0.72) return MAX_LIFT;
-      return value;
-    });
+    setLift((value) => snapSheet(value));
   }
 
   useEffect(() => {
@@ -431,11 +448,7 @@ function Book({ phase, onPhase }: { phase: Exclude<Phase, { kind: "opening" }>; 
     const settle = () => {
       if (!collapsing) return;
       collapsing = false;
-      setLift((value) => {
-        if (value < 0.08) return 0;
-        if (value > 0.72) return MAX_LIFT;
-        return value;
-      });
+      setLift((value) => snapSheet(value));
     };
 
     veil.addEventListener("touchstart", onStart, { passive: true });

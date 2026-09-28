@@ -10,7 +10,7 @@ import { assetUrl, book, type PlateBeat } from "../lib/book";
 import { gradeHinge, type HingeBand } from "../lib/grade-hinge";
 import { parseBand } from "../lib/prose";
 
-const SAVE_KEY = "halcyon-expanse-v7";
+const SAVE_KEY = "halcyon-expanse-v8";
 
 const MAX_LIFT = 0.9;
 const PEEK_FALLBACK = 60;
